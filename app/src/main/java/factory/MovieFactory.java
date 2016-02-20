@@ -28,7 +28,7 @@ public class MovieFactory {
         movieList.add(new Movie("Poney poney", "Le Poney poney doit sauver son peuple d'un nain maléfique qui veut obscurcir le monde. Il sera aidé de tous ses amis magiques.", Color.BLACK));
         movieList.add(new Movie("Michel et Roger", "Deux enfants grandissent devant une autoroute dans un motel. Adultes, ils sillonent le bitume à bord de leur camion dans une expérience de vie touchante.", Color.BLUE));
         movieList.add(new Movie("Pourquoi la vie ?", "On se le demande tous depuis qu'on sait que 42 n'est qu'un mensonge, comme le gâteau. Omega répond à ces questions dans ce documentaire.", Color.GREEN));
-        movieList.add(new Movie("Je suis un cinéaste", "Michel Lac est devenu aveugle et ne peut plus réalisier d'explosions. Il plonge dans une profonde déprime, mais Lucette, grande fan, ne l'entend pas comme ça.", Color.RED));
+        movieList.add(new Movie("Je suis un cinéaste", "Michel Lac est devenu aveugle et ne peut plus réaliser d'explosions. Il plonge dans une profonde dépression, mais Lucette, grande fan, ne l'entend pas comme ça.", Color.RED));
         movieList.add(new Movie("51 variations", "Peronne n'aurait pu préparer Tiantian à ce qui va lui arriver. Muni de son Audi et sa cravate, il se lance à corps perdu dans le combat de sa vie.", Color.GRAY));
 
         return movieList;
