@@ -1,5 +1,6 @@
 package com.charton.andoidtp.ui.common.adapter;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +18,11 @@ import model.Movie;
  */
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
+    private Activity mActivity;
     private List<Movie> mMovieList;
 
-    public MovieAdapter(List<Movie> movieList) {
+    public MovieAdapter(Activity activity, List<Movie> movieList) {
+        mActivity = activity;
         mMovieList = movieList;
     }
 
