@@ -1,5 +1,7 @@
 package com.charton.andoidtp.ui.ui.fragments;
 
+import android.content.Context;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,12 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.charton.andoidtp.R;
-import com.charton.andoidtp.ui.common.adapter.MovieAdapter;
+import com.charton.andoidtp.ui.common.adapter.adapter.MovieAdapter;
+import com.charton.andoidtp.ui.common.adapter.util.ItemClickSupport;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import factory.MovieFactory;
 import model.Movie;
 
 /**
@@ -26,6 +28,7 @@ public class MoviesListFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private MovieAdapter mMovieAdapter;
     private List<Movie> mMovies = new ArrayList<>();
+    private MovieListCallback mCallback;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,7 +39,15 @@ public class MoviesListFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mMovieAdapter = new MovieAdapter(getActivity(), mMovies);
         mRecyclerView.setAdapter(mMovieAdapter);
-        
+
+        ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new ItemClickSupport
+                .OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                mCallback.onItemSelected(mMovies.get(position));
+            }
+        });
+
         return view;
     }
 
@@ -45,11 +56,30 @@ public class MoviesListFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof MovieListCallback) {
+            mCallback = (MovieListCallback) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement MovieistCallback");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mCallback = null;
+    }
+
     public void ChangeList(List<Movie> list)
     {
         mMovies.clear();
         mMovies = list;
     }
-
+    public interface MovieListCallback {
+        void onItemSelected(Movie movie);
+    }
 
 }

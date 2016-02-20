@@ -1,4 +1,4 @@
-package com.charton.andoidtp.ui.common.adapter;
+package com.charton.andoidtp.ui.common.adapter.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;

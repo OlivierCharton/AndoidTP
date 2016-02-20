@@ -1,5 +1,6 @@
 package com.charton.andoidtp.ui.ui;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -7,14 +8,13 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.charton.andoidtp.R;
-import com.charton.andoidtp.ui.common.adapter.MoviePagerAdapter;
+import com.charton.andoidtp.ui.common.adapter.adapter.MoviePagerAdapter;
+import com.charton.andoidtp.ui.ui.activities.MovieActivity;
+import com.charton.andoidtp.ui.ui.fragments.MoviesListFragment;
 
-import java.util.List;
-
-import factory.MovieFactory;
 import model.Movie;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MoviesListFragment.MovieListCallback {
 
 
     private ViewPager mViewPager;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         mViewPager = (ViewPager) findViewById(R.id.movie_pager);
-        mAdapter = new MoviePagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
+        mAdapter = new MoviePagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         mViewPager.setOffscreenPageLimit(mAdapter.getCount());
         mViewPager.setAdapter(mAdapter);
 
@@ -57,7 +57,15 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    @Override
+    public void onItemSelected(Movie mMovie) {
 
+        System.out.print("plop");
+
+        Intent intent = new Intent(this, MovieActivity.class);
+        intent.putExtra("movieSelected", mMovie);
+        startActivity(intent);
     }
 }

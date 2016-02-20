@@ -1,4 +1,4 @@
-package com.charton.andoidtp.ui.common.adapter;
+package com.charton.andoidtp.ui.common.adapter.adapter;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
@@ -39,7 +39,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
         holder.mColorView.setBackgroundColor(movie.getmColor());
         holder.mTitleView.setText(movie.getmTitle());
-        holder.mDescriptionView.setText(movie.getmDescription());
+        holder.mDescriptionView.setText(SexyName(movie.getmDescription()));
     }
 
     @Override
@@ -59,6 +59,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             mDescriptionView = (TextView) v.findViewById(R.id.movie_description);
         }
     }
+
+
+
+    private String SexyName(String name)
+    {
+        int maxLength = 80;
+        if(name.length()<maxLength) return name;
+        else return name.substring(0,maxLength-3).concat("...");
+    }
+
 }
 
 
